@@ -3,7 +3,12 @@
 .wrapper {
   display: flex;
   max-width: 1200px;
-  margin: 0 auto;
+  /* Shift left so the content column (right side) is centered on screen.
+     Sidebar 280px + gap 4.5rem (72px) = 352px of "left wing".
+     Content center is half that (176px) to the right of wrapper center.
+     max() clamps to 0 on narrow viewports so nothing bleeds off-screen. */
+  margin-left: max(0px, calc((100% - 1200px) / 2 - 176px));
+  margin-right: auto;
   padding: 0 2.5rem;
   gap: 4.5rem;
   min-height: 100vh;
@@ -31,8 +36,8 @@
 
 /* Avatar */
 .avatar {
-  width: 130px;
-  height: 130px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid rgba(255, 255, 255, 0.12);
@@ -65,7 +70,9 @@
 }
 
 .navItem {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 0.95rem;
   font-weight: 500;
   color: rgba(244, 246, 251, 0.55);
@@ -81,36 +88,28 @@
   text-decoration: none;
 }
 
-/* Social icons */
-.sidebarContacts {
-  display: flex;
-  gap: 12px;
-  margin-top: 1.5rem;
+/* Subtle divider between page nav and social links */
+.navDivider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  margin: 8px 0 10px;
 }
 
-.sidebarIcon {
+/* Small icon inside a nav item (social links) */
+.navIcon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  color: rgba(244, 246, 251, 0.5);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: inherit;
 }
 
-.sidebarIcon:hover {
-  color: #f4f6fb;
-  background: rgba(79, 110, 247, 0.15);
-  border-color: rgba(79, 110, 247, 0.3);
-  transform: translateY(-1px);
-}
-
-.sidebarIcon svg {
-  width: 19px;
-  height: 19px;
+.navIcon svg {
+  width: 100%;
+  height: 100%;
 }
 
 /* ── Right Main Content ── */
@@ -413,8 +412,8 @@
   }
 
   .avatar {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     margin-bottom: 1rem;
   }
 
@@ -434,8 +433,8 @@
     padding: 4px 8px;
   }
 
-  .sidebarContacts {
-    margin-top: 0.5rem;
+  .navDivider {
+    display: none;
   }
 
   .main {

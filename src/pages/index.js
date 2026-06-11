@@ -31,6 +31,11 @@ function Sidebar({ t }) {
     { key: 'nav.projects',   href: '#projects' },
   ];
 
+  const linkItems = [
+    { key: 'nav.blog',      href: '/blog' },
+    { key: 'nav.dashboard', href: '/dashboard' },
+  ];
+
   return (
     <aside className={styles.sidebar}>
       <div className={styles.sidebarInner}>
@@ -41,14 +46,17 @@ function Sidebar({ t }) {
           {nav.map(({ key, href }) => (
             <a key={key} className={styles.navItem} href={href}>{t(key)}</a>
           ))}
-          <Link className={styles.navItem} to="/blog">{t('nav.blog')}</Link>
-          <Link className={styles.navItem} to="/dashboard">{t('nav.dashboard')}</Link>
-        </nav>
-        <div className={styles.sidebarContacts}>
-          {contacts.map(({ label, href, Icon }) => (
-            <a key={label} className={styles.sidebarIcon} href={href} target="_blank" rel="noopener noreferrer" title={label}><Icon /></a>
+          {linkItems.map(({ key, href }) => (
+            <Link key={key} className={styles.navItem} to={href}>{t(key)}</Link>
           ))}
-        </div>
+          <span className={styles.navDivider} />
+          {contacts.map(({ label, href, Icon }) => (
+            <a key={label} className={styles.navItem} href={href} target="_blank" rel="noopener noreferrer">
+              <span className={styles.navIcon}><Icon /></span>
+              {label}
+            </a>
+          ))}
+        </nav>
       </div>
     </aside>
   );
