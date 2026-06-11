@@ -62,6 +62,8 @@ const t = {
     'dashboard.empty.hint': 'Enter your nickname, write something, and hit Post',
     'dashboard.toast.posted': 'Message posted',
     'dashboard.toast.deleted': 'Message deleted',
+    'dashboard.toast.postError': 'Failed to post. Please try again later.',
+    'dashboard.toast.deleteError': 'Failed to delete. Please try again later.',
   },
   zh: {
     'sidebar.tagline': '写代码、折腾AI、记录生活。',
@@ -123,10 +125,4 @@ const t = {
     'dashboard.form.hint': '支持纯文本',
     'dashboard.form.submit': '发布留言',
     'dashboard.empty.title': '还没有留言，来做第一个！',
-    'dashboard.empty.hint': '输入昵称和想说的话，点击发布即可',
-    'dashboard.toast.posted': '留言已发布',
-    'dashboard.toast.deleted': '留言已删除',
-  },
-};
-
-export default t;
+    'dashboard.empty.hint': '输入昵称和想说

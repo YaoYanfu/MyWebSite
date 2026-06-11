@@ -3,11 +3,11 @@
 .wrapper {
   display: flex;
   max-width: 1200px;
-  /* Shift left so the content column (right side) is centered on screen.
-     Sidebar 280px + gap 4.5rem (72px) = 352px of "left wing".
-     Content center is half that (176px) to the right of wrapper center.
-     max() clamps to 0 on narrow viewports so nothing bleeds off-screen. */
-  margin-left: max(0px, calc((100% - 1200px) / 2 - 176px));
+  /* Shift left so the content column sits near screen center.
+     Sidebar 280px + gap 4.5rem (72px) = 352px.
+     Offset 140px = less aggressive than true center (176px) —
+     nudged slightly right for visual balance. */
+  margin-left: max(0px, calc((100% - 1200px) / 2 - 80px));
   margin-right: auto;
   padding: 0 2.5rem;
   gap: 4.5rem;
@@ -36,8 +36,8 @@
 
 /* Avatar */
 .avatar {
-  width: 200px;
-  height: 200px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid rgba(255, 255, 255, 0.12);
@@ -124,6 +124,12 @@
   margin-bottom: 4rem;
 }
 
+/* Subtle divider between adjacent sections */
+.section + .section {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 4rem;
+}
+
 .sectionTitle {
   font-size: 1.3rem;
   font-weight: 650;
@@ -150,6 +156,15 @@
 .expItem {
   display: flex;
   gap: 1rem;
+  padding: 0.5rem;
+  margin: -0.5rem;
+  border-radius: 8px;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.expItem:hover {
+  background: rgba(255, 255, 255, 0.025);
+  transform: translateX(2px);
 }
 
 .expIconBox {
@@ -291,12 +306,14 @@
   backdrop-filter: blur(18px) saturate(150%);
   -webkit-backdrop-filter: blur(18px) saturate(150%);
   padding: 1.15rem 1.35rem;
-  transition: border-color 0.25s ease, background 0.25s ease;
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .projectCard:hover {
-  border-color: rgba(255, 255, 255, 0.13);
+  border-color: rgba(79, 110, 247, 0.2);
   background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3), 0 2px 12px rgba(79, 110, 247, 0.1);
 }
 
 .projectMeta {
@@ -354,12 +371,14 @@
   -webkit-backdrop-filter: blur(18px) saturate(150%);
   padding: 1.15rem 1.35rem;
   text-decoration: none;
-  transition: border-color 0.25s ease, background 0.25s ease;
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .linkCard:hover {
-  border-color: rgba(255, 255, 255, 0.13);
+  border-color: rgba(79, 110, 247, 0.18);
   background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25), 0 2px 10px rgba(79, 110, 247, 0.08);
   text-decoration: none;
 }
 
@@ -390,54 +409,4 @@
 
 /* ── Responsive: stack on narrow screens ── */
 
-@media screen and (max-width: 768px) {
-  .wrapper {
-    flex-direction: column;
-    gap: 0;
-    padding: 0 1rem;
-  }
-
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: static;
-    padding-top: 2.5rem;
-  }
-
-  .sidebarInner {
-    flex-direction: column;
-    align-items: flex-start;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  .avatar {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 1rem;
-  }
-
-  .sidebarName {
-    font-size: 1.3rem;
-  }
-
-  .sidebarNav {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 4px;
-    margin: 1rem 0;
-  }
-
-  .navItem {
-    font-size: 0.82rem;
-    padding: 4px 8px;
-  }
-
-  .navDivider {
-    display: none;
-  }
-
-  .main {
-    padding: 2rem 0 3rem;
-  }
-}
+@media screen and

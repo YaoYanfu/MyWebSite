@@ -28,6 +28,20 @@ const config = {
 
   plugins: [
     './plugins/live2d-plugin',
+    [
+      '@docusaurus/plugin-ideal-image',
+      { quality: 80, max: 1440, steps: 3, disableInDev: false },
+    ],
+    [
+      '@easyops-cn/docusaurus-search-local',
+      { indexDocs: false, indexBlog: true, indexPages: true, language: ['en', 'zh'], hashed: true },
+    ],
+  ],
+
+  headTags: [
+    { tagName: 'link', attributes: { rel: 'preconnect', href: 'https://fonts.googleapis.com' } },
+    { tagName: 'link', attributes: { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' } },
+    { tagName: 'link', attributes: { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap' } },
   ],
 
   i18n: {
@@ -45,7 +59,7 @@ const config = {
         blog: {
           showReadingTime: true,
           blogSidebarCount: 10,
-          blogSidebarTitle: '最近文章',
+          blogSidebarTitle: 'Recent Posts',
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
@@ -78,37 +92,4 @@ const config = {
         {to: '/', label: 'Home', position: 'left'},
         {to: '/blog', label: 'Blog', position: 'left'},
         {to: '/project', label: 'Project', position: 'left'},
-        {to: '/dashboard', label: 'Dashboard', position: 'left'},
-      ],
-    },
-    footer: {
-      style: 'dark',
-      links: [
-        {
-          title: 'Nav',
-          items: [
-            { label: 'Blog', to: '/blog' },
-            { label: 'Project', to: '/project' },
-            { label: 'Dashboard', to: '/dashboard' },
-          ],
-        },
-        {
-          title: 'About',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/YaoYanfu',
-            },
-          ],
-        },
-      ],
-      copyright: 'Copyright (c) Yves Yao',
-    },
-    prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
-    },
-  },
-};
-
-export default config;
+    

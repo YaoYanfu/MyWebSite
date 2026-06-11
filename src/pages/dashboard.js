@@ -1,7 +1,6 @@
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Layout from '@theme/Layout';
-import { useLanguage } from '@site/src/context/LanguageContext';
-import TR from '@site/src/data/translations';
+import { useTranslation } from '@site/src/context/LanguageContext';
 import { fetchMessages, postMessage, deleteMessage, getFingerprint } from '@site/src/lib/supabase';
 import styles from './dashboard.module.css';
 
@@ -78,16 +77,7 @@ function MessageCard({ msg, fingerprint, onDelete }) {
 /* ── Page ── */
 
 export default function Dashboard() {
-  const { lang } = useLanguage();
-
-  const t = useMemo(() => {
-    const dict = TR[lang] || TR.en;
-    return (key, vars) => {
-      let s = dict[key] || key;
-      if (vars) Object.entries(vars).forEach(([k, v]) => { s = s.replace(`{${k}}`, v); });
-      return s;
-    };
-  }, [lang]);
+  const t = useTranslation();
 
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -97,14 +87,26 @@ export default function Dashboard() {
   const [submitting, setSubmitting] = useState(false);
   const [toast, setToast] = useState({ msg: '', visible: false });
   const [fingerprint] = useState(() => getFingerprint());
-  const textareaRef = useRef(null);
   const toastTimer = useRef(null);
+
+  /* ── fetch with 30 s in-memory cache ── */
+  const CACHE_TTL = 30_000;
+  const cacheRef = useRef(null);
 
   /* load messages from Supabase on mount */
   useEffect(() => {
     let cancelled = false;
+    const cached = cacheRef.current;
+    if (cached && Date.now() - cached.ts < CACHE_TTL) {
+      setMessages(cached.data);
+      setLoading(false);
+      return;
+    }
     fetchMessages()
-      .then(data => { if (!cancelled) { setMessages(data); setLoading(false); } })
+      .then(data => {
+        cacheRef.current = { data, ts: Date.now() };
+        if (!cancelled) { setMessages(data); setLoading(false); }
+      })
       .catch(err => { if (!cancelled) { setError(err.message); setLoading(false); } });
     return () => { cancelled = true; };
   }, []);
@@ -126,11 +128,12 @@ export default function Dashboard() {
     setSubmitting(true);
     try {
       const [newMsg] = await postMessage({ author: trimmedNick, text: trimmedText, fingerprint });
+      cacheRef.current = null;
       setMessages(prev => [newMsg, ...prev]);
       setNickname(''); setText('');
       showToast(t('dashboard.toast.posted'));
     } catch (err) {
-      showToast('发送失败，请稍后重试');
+      showToast(t('dashboard.toast.postError'));
     } finally {
       setSubmitting(false);
     }
@@ -140,10 +143,11 @@ export default function Dashboard() {
   async function handleDelete(id) {
     try {
       await deleteMessage(id);
+      cacheRef.current = null;
       setMessages(prev => prev.filter(m => m.id !== id));
       showToast(t('dashboard.toast.deleted'));
     } catch (err) {
-      showToast('删除失败，请稍后重试');
+      showToast(t('dashboard.toast.deleteError'));
     }
   }
 
@@ -172,7 +176,7 @@ export default function Dashboard() {
             <span className={styles.charCount}>{text.length}/{MAX_CHARS}</span>
           </div>
           <textarea
-            ref={textareaRef} className={styles.textarea}
+            className={styles.textarea}
             placeholder={t('dashboard.form.text')}
             value={text} onChange={e => setText(e.target.value)}
             maxLength={MAX_CHARS} rows={3} disabled={submitting}
@@ -214,7 +218,4 @@ export default function Dashboard() {
         </div>
       </main>
 
-      <Toast message={toast.msg} visible={toast.visible} />
-    </Layout>
-  );
-}
+      <Toast message={toast.msg

@@ -18,17 +18,10 @@ export default function live2dPlugin() {
             attributes: {
               src: 'https://cdn.jsdelivr.net/npm/oh-my-live2d@0.19.3/dist/index.min.js',
               defer: true,
+              integrity: 'sha384-OLBgp1GsljhM2TJ+sbHjaiH9txEUvgdDTAzHv2P24donTt6/529l+9Ua0vFImLlb',
+              crossorigin: 'anonymous',
             },
           },
           {
             tagName: 'script',
-            attributes: {
-              src: '/oml2d-init.js',
-              defer: true,
-            },
-          },
-        ],
-      };
-    },
-  };
-}
+            

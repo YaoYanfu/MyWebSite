@@ -1,8 +1,7 @@
 import { useMemo } from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
-import { useLanguage } from '@site/src/context/LanguageContext';
-import TR from '@site/src/data/translations';
+import { useTranslation } from '@site/src/context/LanguageContext';
 
 import styles from './index.module.css';
 
@@ -87,14 +86,9 @@ function StatusPanel({ t }) {
 /* ── Page ── */
 
 export default function Home() {
-  const { lang } = useLanguage();
+  const t = useTranslation();
 
-  const t = useMemo(() => {
-    const dict = TR[lang] || TR.en;
-    return (key) => dict[key] || key;
-  }, [lang]);
-
-  const experience = useMemo(() => {
+  const experience= useMemo(() => {
     const items = [];
     for (let i = 0; t(`home.experience.${i}.heading`) !== `home.experience.${i}.heading`; i++) {
       items.push({
@@ -130,10 +124,10 @@ export default function Home() {
 
           {/* 2. Experience */}
           <section className={styles.section} id="experience">
-            <h2 className={styles.sectionTitle}>{t('home.experience.title')}</h2>
+            <h2 className={`${styles.sectionTitle} anim-fade-up`}>{t('home.experience.title')}</h2>
             <div className={styles.experienceList}>
-              {experience.map((e) => (
-                <div className={styles.expItem} key={e.heading}>
+              {experience.map((e, i) => (
+                <div className={`${styles.expItem} anim-fade-up anim-d${i + 1}`} key={e.heading}>
                   <div className={styles.expIconBox}>
                     <img className={styles.expIcon} src={e.icon} alt="" />
                   </div>
@@ -152,10 +146,10 @@ export default function Home() {
 
           {/* 3. Projects */}
           <section className={styles.section} id="projects">
-            <h2 className={styles.sectionTitle}>{t('home.projects.title')}</h2>
+            <h2 className={`${styles.sectionTitle} anim-fade-up`}>{t('home.projects.title')}</h2>
             <div className={styles.projectList}>
-              {projects.map(p => (
-                <article className={styles.projectCard} key={p.name}>
+              {projects.map((p, i) => (
+                <article className={`${styles.projectCard} anim-fade-up anim-d${i + 1}`} key={p.name}>
                   <span className={styles.projectMeta}>{p.meta}</span>
                   <h3 className={styles.projectName}>{p.name}</h3>
                   <p className={styles.projectDesc}>{p.desc}</p>
@@ -167,23 +161,14 @@ export default function Home() {
 
           {/* 4. Recent */}
           <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>{t('home.recent.title')}</h2>
+            <h2 className={`${styles.sectionTitle} anim-fade-up`}>{t('home.recent.title')}</h2>
             <div className={styles.recentGrid}>
-              <Link to="/blog" className={styles.linkCard}>
+              <Link to="/blog" className={`${styles.linkCard} anim-fade-up anim-d1`}>
                 <span className={styles.linkCardLabel}>{t('home.recent.blog.label')}</span>
                 <strong className={styles.linkCardTitle}>{t('home.recent.blog.title')}</strong>
                 <p className={styles.linkCardDesc}>{t('home.recent.blog.desc')}</p>
               </Link>
-              <Link to="/dashboard" className={styles.linkCard}>
+              <Link to="/dashboard" className={`${styles.linkCard} anim-fade-up anim-d2`}>
                 <span className={styles.linkCardLabel}>{t('home.recent.dashboard.label')}</span>
                 <strong className={styles.linkCardTitle}>{t('home.recent.dashboard.title')}</strong>
-                <p className={styles.linkCardDesc}>{t('home.recent.dashboard.desc')}</p>
-              </Link>
-            </div>
-          </section>
-
-        </main>
-      </div>
-    </Layout>
-  );
-}
+                <p className={

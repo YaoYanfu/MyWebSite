@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import { createContext, useContext, useState, useCallback, useMemo } from 'react';
+import TR from '@site/src/data/translations';
 
 const STORAGE_KEY = 'site_language';
 
@@ -17,11 +18,7 @@ const LanguageContext = createContext({
 });
 
 export function LanguageProvider({ children }) {
-  const [lang, setLangState] = useState('en');
-
-  useEffect(() => {
-    setLangState(getInitialLang());
-  }, []);
+  const [lang, setLangState] = useState(getInitialLang);
 
   const setLang = useCallback((l) => {
     setLangState(l);
@@ -38,3 +35,6 @@ export function LanguageProvider({ children }) {
 export function useLanguage() {
   return useContext(LanguageContext);
 }
+
+/**
+ * Share
