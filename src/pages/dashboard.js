@@ -88,6 +88,7 @@ export default function Dashboard() {
   const [toast, setToast] = useState({ msg: '', visible: false });
   const [fingerprint] = useState(() => getFingerprint());
   const toastTimer = useRef(null);
+  const textareaRef = useRef(null);
 
   /* ── fetch with 30 s in-memory cache ── */
   const CACHE_TTL = 30_000;
@@ -171,11 +172,13 @@ export default function Dashboard() {
               className={styles.input} type="text"
               placeholder={t('dashboard.form.nickname')}
               value={nickname} onChange={e => setNickname(e.target.value)}
+              onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); textareaRef.current?.focus(); } }}
               maxLength={20} autoComplete="off" disabled={submitting}
             />
             <span className={styles.charCount}>{text.length}/{MAX_CHARS}</span>
           </div>
           <textarea
+            ref={textareaRef}
             className={styles.textarea}
             placeholder={t('dashboard.form.text')}
             value={text} onChange={e => setText(e.target.value)}
@@ -196,12 +199,12 @@ export default function Dashboard() {
           {loading ? (
             <div className={styles.empty}>
               <div className={styles.emptyIcon}>◌</div>
-              <p className={styles.emptyText}>加载中...</p>
+              <p className={styles.emptyText}>{t('dashboard.loading')}</p>
             </div>
           ) : error ? (
             <div className={styles.empty}>
               <div className={styles.emptyIcon}>⚠</div>
-              <p className={styles.emptyText}>加载失败</p>
+              <p className={styles.emptyText}>{t('dashboard.error')}</p>
               <p className={styles.emptyHint}>{error}</p>
             </div>
           ) : messages.length === 0 ? (

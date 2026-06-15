@@ -5,7 +5,6 @@
 }
 
 /* ── Header ── */
-
 .header {
   text-align: center;
   margin-bottom: 2.5rem;
@@ -24,21 +23,20 @@
 
 .subtitle {
   font-size: 0.95rem;
-  color: rgba(244, 246, 251, 0.45);
+  color: var(--site-text-muted);
   font-weight: 400;
 }
 
 /* ── Form ── */
-
 .form {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 12px;
   backdrop-filter: blur(18px) saturate(150%);
   -webkit-backdrop-filter: blur(18px) saturate(150%);
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  transition: border-color 0.25s ease;
+  transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .form:focus-within {
@@ -54,7 +52,7 @@
 
 .charCount {
   font-size: 0.72rem;
-  color: rgba(244, 246, 251, 0.32);
+  color: var(--site-text-muted);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
   flex-shrink: 0;
@@ -62,24 +60,24 @@
 
 .input {
   flex: 1;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--site-surface-soft);
+  border: 1px solid var(--site-border-subtle);
   border-radius: 8px;
   padding: 11px 14px;
   font-size: 0.9rem;
-  color: #f4f6fb;
+  color: var(--site-text-primary);
   outline: none;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: inherit;
 }
 
 .input:focus {
   border-color: rgba(79, 110, 247, 0.45);
-  background: rgba(255, 255, 255, 0.07);
+  background: var(--site-surface-hover);
 }
 
 .input::placeholder {
-  color: rgba(244, 246, 251, 0.22);
+  color: var(--site-text-muted);
 }
 
 .textarea {
@@ -98,7 +96,7 @@
 
 .hint {
   font-size: 0.75rem;
-  color: rgba(244, 246, 251, 0.28);
+  color: var(--site-text-muted);
 }
 
 .submitBtn {
@@ -113,7 +111,7 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.15s ease, opacity 0.2s ease;
+  transition: background 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: inherit;
 }
 
@@ -123,7 +121,8 @@
 }
 
 .submitBtn:active:not(:disabled) {
-  transform: translateY(0);
+  transform: translateY(0) scale(0.97);
+  transition-duration: 0.06s;
 }
 
 .submitBtn:disabled {
@@ -132,7 +131,6 @@
 }
 
 /* ── Message List ── */
-
 .messageList {
   display: flex;
   flex-direction: column;
@@ -140,16 +138,16 @@
 }
 
 .message {
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 10px;
   padding: 1.25rem 1.35rem;
   animation: messageSlideIn 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
-  transition: border-color 0.25s ease, background 0.25s ease;
+  transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), background 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .message:hover {
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--site-border-hover);
 }
 
 .messageTop {
@@ -160,7 +158,6 @@
 }
 
 /* ── Author + Avatar ── */
-
 .authorBlock {
   display: flex;
   align-items: center;
@@ -176,7 +173,7 @@
   justify-content: center;
   font-size: 0.82rem;
   font-weight: 700;
-  color: #08090c;
+  color: #fff;
   flex-shrink: 0;
   user-select: none;
 }
@@ -190,34 +187,33 @@
 .messageAuthor {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #f4f6fb;
+  color: var(--site-text-primary);
   line-height: 1.2;
 }
 
 .messageTime {
   font-size: 0.72rem;
-  color: rgba(244, 246, 251, 0.3);
+  color: var(--site-text-muted);
 }
 
 /* ── Delete ── */
-
 .deleteBtn {
   background: none;
   border: 1px solid transparent;
   border-radius: 6px;
-  color: rgba(244, 246, 251, 0.2);
+  color: var(--site-text-muted);
   font-size: 0.85rem;
   cursor: pointer;
   padding: 4px 8px;
-  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: inherit;
   line-height: 1;
   flex-shrink: 0;
 }
 
 .deleteBtn:hover {
-  color: rgba(244, 246, 251, 0.5);
-  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--site-text-secondary);
+  border-color: var(--site-border-subtle);
 }
 
 .deleteConfirm {
@@ -227,10 +223,9 @@
 }
 
 /* ── Message text ── */
-
 .messageText {
   font-size: 0.92rem;
-  color: rgba(244, 246, 251, 0.66);
+  color: var(--site-text-secondary);
   line-height: 1.68;
   margin: 0;
   white-space: pre-wrap;
@@ -238,11 +233,10 @@
 }
 
 /* ── Empty state ── */
-
 .empty {
   text-align: center;
   padding: 4rem 0 3rem;
-  color: rgba(244, 246, 251, 0.2);
+  color: var(--site-text-muted);
 }
 
 .emptyIcon {
@@ -258,29 +252,28 @@
 
 .emptyHint {
   font-size: 0.8rem;
-  color: rgba(244, 246, 251, 0.16);
+  color: var(--site-text-muted);
   margin: 0;
 }
 
 /* ── Toast ── */
-
 .toast {
   position: fixed;
   bottom: 32px;
   left: 50%;
   transform: translateX(-50%) translateY(20px);
-  background: rgba(17, 19, 24, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--site-bg-surface);
+  border: 1px solid var(--site-border-subtle);
   border-radius: 8px;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: 10px 24px;
   font-size: 0.85rem;
-  color: rgba(244, 246, 251, 0.8);
+  color: var(--site-text-secondary);
   z-index: 9999;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .toastShow {
@@ -289,20 +282,12 @@
 }
 
 /* ── Animations ── */
-
 @keyframes messageSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ── Responsive ── */
-
 @media (max-width: 640px) {
   .container {
     padding: 2rem 1rem 3.5rem;

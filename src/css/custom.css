@@ -1,9 +1,10 @@
 /* ============================================
-   Moonshot-inspired Dark Minimalist Theme
+   Yves Yao — Dual-theme Design System
    ============================================ */
 
-/* --- CSS Variables --- */
+/* ── Shared / Light (default) ── */
 :root {
+  /* Docusaurus primary */
   --ifm-color-primary: #4f6ef7;
   --ifm-color-primary-dark: #3357f5;
   --ifm-color-primary-darker: #2249f4;
@@ -11,17 +12,85 @@
   --ifm-color-primary-light: #6b85f9;
   --ifm-color-primary-lighter: #7c93f9;
   --ifm-color-primary-lightest: #aab8fc;
+
+  /* Backgrounds */
+  --ifm-background-color: #f8f9fc;
+  --ifm-background-surface-color: #ffffff;
+  --ifm-navbar-background-color: rgba(248, 249, 252, 0.88);
+  --ifm-footer-background-color: #f1f3f7;
+
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.06);
+
+  /* Typography */
+  --ifm-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --ifm-font-weight-normal: 400;
+  --ifm-heading-font-family: var(--ifm-font-family-base);
+  --ifm-heading-font-weight: 600;
+  --ifm-font-color-base: #1a1a2e;
+  --ifm-font-color-secondary: rgba(26, 26, 46, 0.65);
+  --ifm-link-color: #4f6ef7;
+  --ifm-link-hover-color: #3357f5;
+
+  /* Navbar */
+  --ifm-navbar-link-color: rgba(26, 26, 46, 0.65);
+  --ifm-navbar-link-hover-color: #1a1a2e;
+
+  /* Sidebar menu */
+  --ifm-menu-color: rgba(26, 26, 46, 0.6);
+  --ifm-menu-color-active: #1a1a2e;
+  --ifm-toc-link-color: rgba(26, 26, 46, 0.55);
+  --ifm-breadcrumb-color-active: #1a1a2e;
+  --ifm-table-border-color: rgba(0, 0, 0, 0.08);
+  --ifm-hr-border-color: rgba(0, 0, 0, 0.08);
+
+  /* ── Site design tokens ── */
+  --site-bg: #f8f9fc;
+  --site-bg-surface: #ffffff;
+  --site-text-primary: #1a1a2e;
+  --site-text-secondary: rgba(26, 26, 46, 0.65);
+  --site-text-muted: rgba(26, 26, 46, 0.42);
+  --site-border-subtle: rgba(0, 0, 0, 0.07);
+  --site-border-hover: rgba(0, 0, 0, 0.13);
+  --site-surface-soft: rgba(0, 0, 0, 0.03);
+  --site-surface-hover: rgba(0, 0, 0, 0.06);
+  --site-accent-start: #4f6ef7;
+  --site-accent-mid: #7c5cfc;
+  --site-accent-end: #b37cfc;
+
+  /* Glass card */
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(0, 0, 0, 0.07);
+  --glass-hover: rgba(255, 255, 255, 0.92);
+
+  /* Shadows */
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --card-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.08), 0 2px 12px rgba(79, 110, 247, 0.08);
+
+  /* Grid overlay */
+  --grid-color: rgba(0, 0, 0, 0.03);
+
+  /* Divider */
+  --divider-color: rgba(0, 0, 0, 0.06);
+
+  /* Misc */
+  --ifm-navbar-height: 60px;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Native page transitions (Chrome/Edge) ── */
+@view-transition {
+  navigation: auto;
+}
+
+/* ── Dark theme overrides ── */
+[data-theme='dark'] {
   --ifm-background-color: #08090c;
   --ifm-background-surface-color: #111318;
   --ifm-navbar-background-color: rgba(8, 9, 12, 0.84);
   --ifm-footer-background-color: #08090c;
-  --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.06);
-  --ifm-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  /* Body text keeps regular weight for clean Chinese rendering (PingFang SC Regular) */
-  --ifm-font-weight-normal: 400;
-  --ifm-heading-font-family: var(--ifm-font-family-base);
-  --ifm-heading-font-weight: 600;
+
   --ifm-font-color-base: #f4f6fb;
   --ifm-font-color-secondary: rgba(244, 246, 251, 0.72);
   --ifm-link-color: #6b85f9;
@@ -34,25 +103,26 @@
   --ifm-breadcrumb-color-active: #f4f6fb;
   --ifm-table-border-color: rgba(255, 255, 255, 0.08);
   --ifm-hr-border-color: rgba(255, 255, 255, 0.08);
+
+  --site-bg: #08090c;
+  --site-bg-surface: #111318;
   --site-text-primary: #f4f6fb;
   --site-text-secondary: rgba(244, 246, 251, 0.74);
   --site-text-muted: rgba(244, 246, 251, 0.48);
   --site-border-subtle: rgba(255, 255, 255, 0.08);
+  --site-border-hover: rgba(255, 255, 255, 0.14);
   --site-surface-soft: rgba(255, 255, 255, 0.045);
   --site-surface-hover: rgba(255, 255, 255, 0.07);
-  --site-accent-start: #4f6ef7;
-  --site-accent-mid: #7c5cfc;
-  --site-accent-end: #b37cfc;
   --glass-bg: rgba(255, 255, 255, 0.045);
   --glass-border: rgba(255, 255, 255, 0.09);
   --glass-hover: rgba(255, 255, 255, 0.07);
   --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
   --card-shadow-hover: 0 18px 48px rgba(0, 0, 0, 0.28), 0 4px 24px rgba(79, 110, 247, 0.12);
-  --ifm-navbar-height: 60px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  --grid-color: rgba(255, 255, 255, 0.012);
+  --divider-color: rgba(255, 255, 255, 0.06);
 }
 
-/* --- Global Reset & Base --- */
+/* ── Global Reset & Base ── */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
@@ -65,7 +135,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* --- Grid/Wireframe Background --- */
+/* ── Grid/Wireframe Background ── */
 body::before {
   content: '';
   position: fixed;
@@ -73,8 +143,8 @@ body::before {
   z-index: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 70%);
   -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 70%);
@@ -85,7 +155,7 @@ body::before {
   z-index: 1;
 }
 
-/* --- Navbar --- */
+/* ── Navbar ── */
 .navbar {
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -94,7 +164,7 @@ body::before {
   box-shadow: none;
   height: var(--ifm-navbar-height);
   padding: 0 24px;
-  transition: background 0.3s ease, border-color 0.3s ease;
+  transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar__items--left {
@@ -116,7 +186,7 @@ body::before {
   padding: 8px 12px;
   border-radius: 8px;
   letter-spacing: 0;
-  transition: color 0.2s ease, background 0.2s ease;
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar__link:hover {
@@ -131,33 +201,42 @@ body::before {
 
 .navbar__brand:hover {
   opacity: 0.8;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* --- Dropdown Menu --- */
+/* Navbar scroll shadow — fades in as user scrolls down */
+html.scrolled .navbar {
+  box-shadow: 0 1px 3px var(--card-shadow);
+}
+
+/* ── Dropdown Menu ── */
 .dropdown__menu {
-  background: rgba(17, 19, 24, 0.96);
+  background: var(--site-bg-surface);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--site-border-subtle);
   border-radius: 8px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   padding: 8px;
+}
+
+[data-theme='dark'] .dropdown__menu {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 .dropdown__link {
   border-radius: 8px;
-  transition: background 0.15s ease;
+  transition: background 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dropdown__link:hover {
   background: var(--site-surface-hover);
 }
 
-/* --- Sidebar --- */
+/* ── Sidebar Menu ── */
 .menu__link {
   border-radius: 8px;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background 0.15s cubic-bezier(0.4, 0, 0.2, 1), color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .menu__link:hover {
@@ -174,7 +253,7 @@ body::before {
   border-right: 1px solid var(--site-border-subtle) !important;
 }
 
-/* --- Footer --- */
+/* ── Footer ── */
 .footer {
   background: var(--ifm-footer-background-color);
   border-top: 1px solid var(--site-border-subtle);
@@ -191,7 +270,7 @@ body::before {
 
 .footer__link-item {
   color: var(--site-text-muted);
-  transition: color 0.2s ease;
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   font-size: 0.9rem;
 }
 
@@ -201,11 +280,11 @@ body::before {
 }
 
 .footer__copyright {
-  color: rgba(244, 246, 251, 0.34);
+  color: var(--site-text-muted);
   font-size: 0.8rem;
 }
 
-/* --- Cards (Glassmorphism) --- */
+/* ── Cards (Glassmorphism) ── */
 .card {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
@@ -214,18 +293,18 @@ body::before {
   -webkit-backdrop-filter: blur(18px) saturate(150%);
   transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
               box-shadow 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
-              border-color 0.3s ease,
-              background 0.3s ease;
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card:hover {
   background: var(--glass-hover);
-  border-color: rgba(255, 255, 255, 0.13);
+  border-color: var(--site-border-hover);
   transform: translateY(-2px);
   box-shadow: var(--card-shadow-hover);
 }
 
-/* --- Buttons --- */
+/* ── Buttons ── */
 .button {
   border-radius: 8px;
   font-weight: 500;
@@ -238,7 +317,7 @@ body::before {
 .button--primary {
   background: linear-gradient(135deg, var(--site-accent-start) 0%, var(--site-accent-mid) 100%);
   border: none;
-  color: var(--site-text-primary);
+  color: #fff;
 }
 
 .button--primary:hover {
@@ -255,10 +334,10 @@ body::before {
 
 .button--secondary:hover {
   background: var(--site-surface-soft);
-  border-color: rgba(255, 255, 255, 0.14);
+  border-color: var(--site-border-hover);
 }
 
-/* --- Code Blocks --- */
+/* ── Code Blocks ── */
 code {
   background: var(--site-surface-soft);
   border: 1px solid var(--site-border-subtle);
@@ -268,12 +347,12 @@ code {
 }
 
 pre {
-  background: rgba(17, 19, 24, 0.76) !important;
+  background: var(--site-bg-surface) !important;
   border: 1px solid var(--site-border-subtle);
   border-radius: 8px !important;
 }
 
-/* --- Right-side Table of Contents --- */
+/* ── TOC ── */
 .table-of-contents {
   font-size: 0.92rem;
   line-height: 1.7;
@@ -288,7 +367,7 @@ pre {
   border-radius: 6px;
   font-size: 0.92rem;
   padding: 3px 10px;
-  transition: all 0.15s ease;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   display: block;
 }
 
@@ -303,33 +382,28 @@ pre {
   background: rgba(79, 110, 247, 0.12);
 }
 
-/* ============================================
-   Markdown Typography
-   ============================================ */
-
-/* --- Bold emphasis --- */
+/* ── Markdown Typography ── */
 article strong,
 .markdown strong {
   font-weight: 700;
-  color: #f4f6fb;
+  color: var(--site-text-primary);
 }
 
-/* --- Headings --- */
 .markdown h2 {
   font-size: 1.65rem;
   font-weight: 650;
   letter-spacing: -0.01em;
-  color: #f4f6fb;
+  color: var(--site-text-primary);
   margin-top: 2.5rem;
   margin-bottom: 1rem;
   padding-bottom: 0.65rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid var(--divider-color);
 }
 
 .markdown h3 {
   font-size: 1.3rem;
   font-weight: 600;
-  color: rgba(244, 246, 251, 0.82);
+  color: var(--site-text-secondary);
   margin-top: 2rem;
   margin-bottom: 0.75rem;
 }
@@ -337,21 +411,20 @@ article strong,
 .markdown h4 {
   font-size: 1.1rem;
   font-weight: 600;
-  color: rgba(244, 246, 251, 0.68);
+  color: var(--site-text-muted);
   margin-top: 1.5rem;
   margin-bottom: 0.6rem;
 }
 
-/* --- Blockquote --- */
 .markdown blockquote {
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--site-surface-soft);
+  border: 1px solid var(--site-border-subtle);
   border-left: 3px solid transparent;
   border-image: linear-gradient(180deg, #4f6ef7, #b37cfc) 1;
   border-radius: 0 8px 8px 0;
   padding: 1rem 1.25rem;
   margin: 1.5rem 0;
-  color: rgba(244, 246, 251, 0.62);
+  color: var(--site-text-secondary);
   font-size: 0.92rem;
   line-height: 1.65;
 }
@@ -360,19 +433,17 @@ article strong,
   margin: 0;
 }
 
-/* --- Images --- */
 .markdown img {
   border-radius: 10px;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: var(--card-shadow), 0 0 0 1px var(--site-border-subtle);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .markdown img:hover {
   transform: scale(1.01);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: var(--card-shadow-hover);
 }
 
-/* --- List spacing --- */
 .markdown ul,
 .markdown ol {
   padding-left: 1.25rem;
@@ -386,15 +457,13 @@ article strong,
   margin-bottom: 0;
 }
 
-/* --- Horizontal rule --- */
 .markdown hr {
   height: 1px;
   border: none;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, var(--site-border-subtle), transparent);
   margin: 2.5rem 0;
 }
 
-/* --- Inline links --- */
 .markdown a[href^="http"]::after {
   content: ' ↗';
   font-size: 0.75em;
@@ -405,7 +474,7 @@ article strong,
   color: var(--ifm-link-color);
   text-decoration: none;
   background: linear-gradient(currentColor, currentColor) left bottom / 0 1px no-repeat;
-  transition: background-size 0.3s ease, color 0.2s ease;
+  transition: background-size 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .markdown a:hover {
@@ -414,7 +483,7 @@ article strong,
   text-decoration: none;
 }
 
-/* --- Tables --- */
+/* ── Tables ── */
 table {
   border-radius: 8px;
   overflow: hidden;
@@ -429,7 +498,7 @@ th, td {
   padding: 12px 16px !important;
 }
 
-/* --- Scrollbar --- */
+/* ── Scrollbar ── */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -440,30 +509,15 @@ th, td {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(244, 246, 251, 0.16);
+  background: var(--site-text-muted);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(244, 246, 251, 0.26);
+  background: var(--site-text-secondary);
 }
 
-/* --- Search --- */
-.DocSearch-Button {
-  background: var(--site-surface-soft) !important;
-  border: 1px solid var(--site-border-subtle) !important;
-  border-radius: 8px !important;
-  color: var(--site-text-muted) !important;
-  transition: all 0.2s ease !important;
-}
-
-.DocSearch-Button:hover {
-  background: var(--site-surface-hover) !important;
-  border-color: rgba(255, 255, 255, 0.14) !important;
-  color: var(--site-text-secondary) !important;
-}
-
-/* --- Blog Post Cards --- */
+/* ── Blog Post Cards ── */
 article[itemprop="blogPost"] {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
@@ -475,25 +529,25 @@ article[itemprop="blogPost"] {
 }
 
 article[itemprop="blogPost"]:hover {
-  border-color: rgba(255, 255, 255, 0.13);
+  border-color: var(--site-border-hover);
   background: var(--glass-hover);
   transform: translateY(-1px);
   box-shadow: var(--card-shadow-hover);
 }
 
-/* --- Pagination --- */
+/* ── Pagination ── */
 .pagination-nav__link {
   border: 1px solid var(--site-border-subtle);
   border-radius: 8px;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .pagination-nav__link:hover {
-  border-color: rgba(255, 255, 255, 0.14);
+  border-color: var(--site-border-hover);
   background: var(--site-surface-soft);
 }
 
-/* --- Gradient Text Utility --- */
+/* ── Gradient Text ── */
 .text-gradient {
   background: linear-gradient(135deg, var(--site-accent-start) 0%, var(--site-accent-mid) 50%, var(--site-accent-end) 100%);
   -webkit-background-clip: text;
@@ -501,24 +555,15 @@ article[itemprop="blogPost"]:hover {
   background-clip: text;
 }
 
-/* ============================================
-   Animations
-   ============================================ */
-
+/* ── Animations ── */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeIn {
   from { opacity: 0; }
-  to { opacity: 1; }
+  to   { opacity: 1; }
 }
 
 @keyframes shimmer {
@@ -541,7 +586,7 @@ article[itemprop="blogPost"]:hover {
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.8s ease forwards;
+  animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .animate-delay-1 { animation-delay: 0.15s; opacity: 0; }
@@ -549,35 +594,7 @@ article[itemprop="blogPost"]:hover {
 .animate-delay-3 { animation-delay: 0.45s; opacity: 0; }
 .animate-delay-4 { animation-delay: 0.6s; opacity: 0; }
 
-/* --- Live2D 看板娘 --- */
-/* 确保看板娘在正常内容之上，但在导航下拉菜单之下 */
-#oml2d-canvas {
-  z-index: 100 !important;
-}
-
-/* 看板娘菜单弹窗适配暗色主题 */
-.oml2d-menu {
-  z-index: 200 !important;
-}
-
-/* 看板娘提示气泡适配暗色主题 */
-.oml2d-tips {
-  z-index: 150 !important;
-}
-
-/* 移动端适当缩小 */
-@media (max-width: 768px) {
-  #oml2d-canvas {
-    max-width: 120px;
-    max-height: 180px;
-    object-fit: contain;
-  }
-}
-
-/* ============================================
-   Staggered entrance animations (global)
-   ============================================ */
-
+/* ── Staggered entrance animations ── */
 .anim-fade-up {
   opacity: 0;
   animation: fadeInUpGlobal 0.55s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
@@ -594,7 +611,28 @@ article[itemprop="blogPost"]:hover {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Reduced motion --- */
+/* ── Live2D ── */
+#oml2d-canvas {
+  z-index: 100 !important;
+}
+
+.oml2d-menu {
+  z-index: 200 !important;
+}
+
+.oml2d-tips {
+  z-index: 150 !important;
+}
+
+@media (max-width: 768px) {
+  #oml2d-canvas {
+    max-width: 120px;
+    max-height: 180px;
+    object-fit: contain;
+  }
+}
+
+/* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -602,4 +640,54 @@ article[itemprop="blogPost"]:hover {
     transition-duration: 0.01ms !important;
   }
   html { scroll-behavior: auto; }
+}
+
+/* ── Progressive image blur-up loading ── */
+.blur-load {
+  filter: blur(8px);
+  transform: scale(0.97);
+  transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blur-loaded {
+  filter: blur(0);
+  transform: scale(1);
+}
+
+/* ── Click micro-feedback (:active) ── */
+.card:active,
+.projectCard:active,
+.linkCard:active,
+.project-card:active {
+  transform: scale(0.98) !important;
+  transition-duration: 0.08s !important;
+}
+
+.button:active,
+.submitBtn:active,
+.navItem:active {
+  transform: scale(0.97);
+  transition-duration: 0.06s;
+}
+
+.button--primary:active {
+  transform: scale(0.97) translateY(0);
+}
+
+/* ── Lenis smooth-scroll — remove native smooth, Lenis owns it ── */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }

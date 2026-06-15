@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import { useTranslation } from '@site/src/context/LanguageContext';
@@ -14,7 +14,7 @@ function IconZhihu() { return (<svg viewBox="0 0 24 24" fill="currentColor" aria
 function IconX() { return (<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>); }
 
 const contacts = [
-  { label: 'Email',   href: 'yvesyao0209@foxmail.com',                    Icon: IconEmail },
+  { label: 'Email',   href: 'mailto:yvesyao0209@foxmail.com',                    Icon: IconEmail },
   { label: 'GitHub',  href: 'https://github.com/YaoYanfu',                Icon: IconGitHub },
   { label: 'B站',     href: 'https://space.bilibili.com/286154288',       Icon: IconBilibili },
   { label: '知乎',    href: 'https://www.zhihu.com/people/bxel8l',         Icon: IconZhihu },
@@ -23,7 +23,7 @@ const contacts = [
 
 /* ── Sidebar ── */
 
-function Sidebar({ t }) {
+function Sidebar({ t, scrolled }) {
   const nav = [
     { key: 'nav.about',      href: '#about' },
     { key: 'nav.experience', href: '#experience' },
@@ -36,9 +36,11 @@ function Sidebar({ t }) {
   ];
 
   return (
-    <aside className={styles.sidebar}>
+    <aside className={`${styles.sidebar} ${scrolled ? styles.sidebarScrolled : ''}`}>
       <div className={styles.sidebarInner}>
-        <img className={styles.avatar} src="/img/avatar.jpg" alt="Yves Yao" />
+        <img className={`${styles.avatar} blur-load`} src="/img/avatar.png" alt="Yves Yao"
+          onLoad={e => { e.target.classList.add('blur-loaded'); }}
+          onError={e => { e.target.classList.add('blur-loaded'); }} />
         <h1 className={styles.sidebarName}>Yves Yao</h1>
         <p className={styles.sidebarTagline}>{t('sidebar.tagline')}</p>
         <nav className={styles.sidebarNav}>
@@ -87,6 +89,14 @@ function StatusPanel({ t }) {
 
 export default function Home() {
   const t = useTranslation();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 72);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const experience= useMemo(() => {
     const items = [];
@@ -111,7 +121,7 @@ export default function Home() {
   return (
     <Layout title="Yves Yao" description={t('sidebar.tagline')}>
       <div className={styles.wrapper}>
-        <Sidebar t={t} />
+        <Sidebar t={t} scrolled={scrolled} />
 
         <main className={styles.main}>
 
@@ -129,7 +139,9 @@ export default function Home() {
               {experience.map((e, i) => (
                 <div className={`${styles.expItem} anim-fade-up anim-d${i + 1}`} key={e.heading}>
                   <div className={styles.expIconBox}>
-                    <img className={styles.expIcon} src={e.icon} alt="" />
+                    <img className={`${styles.expIcon} blur-load`} src={e.icon} alt=""
+                      onLoad={ev => { ev.target.classList.add('blur-loaded'); }}
+                      onError={ev => { ev.target.classList.add('blur-loaded'); }} />
                   </div>
                   <div className={styles.expContent}>
                     <div className={styles.expHeadRow}>

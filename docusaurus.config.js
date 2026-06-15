@@ -30,7 +30,7 @@ const config = {
     './plugins/live2d-plugin',
     [
       '@docusaurus/plugin-ideal-image',
-      { quality: 80, max: 1440, steps: 3, disableInDev: false },
+      { quality: 80, max: 1440, steps: 3, disableInDev: true },
     ],
     [
       '@easyops-cn/docusaurus-search-local',
@@ -80,14 +80,10 @@ const config = {
     colorMode: {
       defaultMode: 'dark',
       respectPrefersColorScheme: false,
-      disableSwitch: true,
+      disableSwitch: false,
     },
     navbar: {
       title: 'Yves Yao',
-      logo: {
-        alt: 'Yves Yao',
-        src: 'img/logo.png',
-      },
       items: [
         {to: '/', label: 'Home', position: 'left'},
         {to: '/blog', label: 'Blog', position: 'left'},
@@ -97,7 +93,6 @@ const config = {
       ],
     },
     footer: {
-      style: 'dark',
       links: [
         {
           title: 'Nav',
