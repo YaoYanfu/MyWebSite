@@ -674,20 +674,3 @@ article[itemprop="blogPost"]:hover {
 .button--primary:active {
   transform: scale(0.97) translateY(0);
 }
-
-/* ── Lenis smooth-scroll — remove native smooth, Lenis owns it ── */
-html.lenis {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
