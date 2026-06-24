@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyves_page=self.webpackChunkyves_page||[]).push([["698"],{8799(e){e.exports=JSON.parse('{"tags":[{"label":"\u751F\u6D3B","permalink":"/MyWebSite/blog/tags/life","description":"\u751F\u6D3B\u76F8\u5173\u6587\u7AE0","count":1},{"label":"\u968F\u7B14","permalink":"/MyWebSite/blog/tags/essay","description":"\u968F\u7B14\u6587\u7AE0","count":1}]}')}}]);

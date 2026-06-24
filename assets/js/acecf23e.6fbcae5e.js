@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyves_page=self.webpackChunkyves_page||[]).push([["220"],{1912(e){e.exports=JSON.parse('{"blogBasePath":"/MyWebSite/blog","blogTitle":"Blog","authorsListPath":"/MyWebSite/blog/authors"}')}}]);

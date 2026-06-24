@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyves_page=self.webpackChunkyves_page||[]).push([["833"],{5513(e){e.exports=JSON.parse('{"title":"Recent Posts","items":[{"title":"\u6211\u7684\u5927\u4E00","permalink":"/MyWebSite/blog/\u7B2C\u4E00\u7BC7blog","unlisted":false,"date":"2026-06-01T00:00:00.000Z"}]}')}}]);

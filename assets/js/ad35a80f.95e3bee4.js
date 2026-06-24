@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyves_page=self.webpackChunkyves_page||[]).push([["370"],{6430(e){e.exports=JSON.parse('{"authors":[{"name":"Yves Yao","title":"Aiming to be a Full-Stack developer","url":"https://github.com/YaoYanfu","page":{"permalink":"/MyWebSite/blog/authors/yves"},"socials":{"github":"https://github.com/YaoYanfu"},"key":"yves","count":1}]}')}}]);
