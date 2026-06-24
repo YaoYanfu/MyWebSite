@@ -22,7 +22,7 @@ const config = {
   baseUrl: '/',
 
   organizationName: 'YaoYanfu',
-  projectName: 'yvesyao.com',
+  projectName: 'MyWebSite',
 
   onBrokenLinks: 'throw',
 
